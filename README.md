@@ -16,4 +16,4 @@ To run Witch-KLEE with Symbiotic, make sure the path to the Witch-KLEE executabl
 
 `path/to/symbiotic --witness-check witness program`. 
 
-Violated property and architecture must be provided as arguments, using `--prp property_name` for property and `--64` or `--32` for architecture. For additional options, run `path/to/symbiotic help`.
+Violated property and architecture must be provided as arguments, using `--prp property_name` for property and `--64` or `--32` for architecture. For additional options, run `path/to/symbiotic --help`.
