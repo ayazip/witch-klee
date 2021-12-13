@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<graphml>
+  <graph edgedefault="directed">
+    <data key="witness-type">violation_witness</data>
+    <data key="producer">Verifier</data>
+    <data key="creationtime">2021-11-21T17:50:50</data>
+    <data key="programfile">example_program.c</data>
+    <data key="programhash">875f8283c3722ac0d913006934777de76ea549f4f91d110cd1c2eb0f10c951bb</data>
+    <data key="sourcecodelang">C</data>
+    <data key="architecture">64bit</data>
+    <data key="specification">CHECK( init(main()), LTL(G ! call(reach_error())) )</data>
+
+    <node id="0">
+      <data key="entry">true</data>
+    </node>
+
+    <node id="1"/>
+  
+    <edge source="0" target="1">
+      <data key="startline">6</data>
+      <data key="assumption">\result==0</data>
+      <data key="assumption.resultfunction">__VERIFIER_nondet_int</data>
+    </edge>
+
+    <node id="error">
+      <data key="violation">true</data>
+    </node>
+
+    <edge source="1" target="error">
+      <data key="startline">2</data>
+      <data key="assumption">\result==5</data>
+      <data key="assumption.resultfunction">__VERIFIER_nondet_int</data>
+    </edge>
+  </graph>
+</graphml>
