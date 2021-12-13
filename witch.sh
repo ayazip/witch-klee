@@ -97,4 +97,4 @@ else
 	echo "Verification result unconfirmed."
 fi
 
-
+rm $result $bitcode
