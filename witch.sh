@@ -76,8 +76,10 @@ flags="$flags -m${arch}"
 echo "PROGRAMFILE: $program"
 echo "WITNESSFILE: $witness"
 echo
-bitcode=`mktemp ${program}_XXXXXXXX`
-result=`mktemp ${program}_XXXXXXXX`
+
+name=`basename -s .c program`
+bitcode=`mktemp -t ${name}_XXXXXXXX`.bc
+result=`mktemp -t ${name}_XXXXXXXX`.result
 
 clang $flags -o $bitcode $program
 
