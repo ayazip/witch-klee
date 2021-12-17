@@ -39,7 +39,7 @@ arch=`grep '<data key="architecture">' $witness | sed -e 's/.*<data key="archite
 echo
 
 if [[ -z "$arch" ]] || [[ -z $spec ]]
-then echo "Invalid witness specification or architecture"; exit
+then echo "Invalid task specification or architecture"; exit
 fi
 
 if echo $spec | grep -q "F end"
@@ -67,9 +67,15 @@ then
 	prp=1
 fi
 
-if [[ $prp -eq 0 ]]
+if echo $spec | grep  -q "G ! call"
 then
 	echo "Reach safety witness validation"
+	prp=1
+fi
+
+if [[ $prp -eq 0 ]]
+then
+	echo "Invalid task specification" ; exit 1
 fi
 
 flags="$flags -m${arch}"
