@@ -1,3 +1,6 @@
 [submodule "klee"]
 	path = klee
 	url = https://github.com/ayazip/klee.git
+[submodule "yaml-cpp"]
+	path = yaml-cpp
+	url = https://github.com/t123yh/yaml-cpp.git
