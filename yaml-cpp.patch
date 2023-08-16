@@ -1,0 +1,54 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 42e3bf7..83bfa5e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -108,7 +108,7 @@ endif()
+ if(YAML_CPP_MAIN_PROJECT)
+   target_compile_options(yaml-cpp
+     PRIVATE
+-      $<${not-msvc}:-Wall -Wextra -Wshadow -Weffc++ -Wno-long-long>
++      $<${not-msvc}:-Wall -Wextra -Wshadow -Weffc++ -Wno-long-long -fno-exceptions>
+       $<${not-msvc}:-pedantic -pedantic-errors>)
+ endif()
+ 
+@@ -199,12 +199,12 @@ if (YAML_CPP_FORMAT_SOURCE AND YAML_CPP_CLANG_FORMAT_EXE)
+ endif()
+ 
+ # uninstall target
+-if(NOT TARGET uninstall)
++if(NOT TARGET uninstall-yamlcpp)
+   configure_file(
+     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+     IMMEDIATE @ONLY)
+ 
+-  add_custom_target(uninstall
++  add_custom_target(uninstall-yamlcpp
+     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+ endif()
+diff --git a/include/yaml-cpp/exceptions.h b/include/yaml-cpp/exceptions.h
+index bce4b7a..3381306 100644
+--- a/include/yaml-cpp/exceptions.h
++++ b/include/yaml-cpp/exceptions.h
+@@ -19,14 +19,18 @@ namespace YAML {
+ #if defined(__cpp_exceptions) || (defined(_MSC_VER) && defined(_CPPUNWIND))
+ template<typename Ex, typename... Args>
+ YAML_CPP_NORETURN void YAML_throw(Args&&... args) {
+-	throw Ex(std::forward<Args>(args)...);
++        throw Ex(std::forward<Args>(args)...);
+ }
+ #else
+-YAML_CPP_NORETURN void handle_exception(const char* what);
++YAML_CPP_NORETURN void handle_exception(const char* what) {
++    std::cout << "Parser failure";
++    std::cout << what;
++    std::exit(1);
++};
+ 
+ template<typename Ex, typename... Args>
+ YAML_CPP_NORETURN void YAML_throw(Args&&... args) {
+-	handle_exception(Ex(std::forward<Args>(args)...).what());
++       handle_exception(Ex(std::forward<Args>(args)...).what());
+ }
+ #endif
+ 
