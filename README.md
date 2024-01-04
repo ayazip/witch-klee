@@ -4,7 +4,7 @@ Witch-KLEE is an error witness checker based on the symbolic executor KLEE (http
 
 To build the KLEE-based submodule, follow the instructions available here: https://klee.github.io/build-llvm9/ (also works wiith LLVM 10).
 
-Witch-KLEE is integrated into the program analysis tool Symbiotic (https://github.com/staticafi/symbiotic/tree/witch-klee).
+Witch-KLEE is integrated into the program analysis tool Symbiotic (https://github.com/ayazip/symbiotic/tree/witch-klee).
 To run Witch-KLEE with Symbiotic, make sure the path to the Witch-KLEE executable is in $PATH. Run Symbiotic as:
 
 `path/to/symbiotic --witness-check witness program`.
