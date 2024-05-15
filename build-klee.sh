@@ -1,5 +1,3 @@
-patch -p 1 -N -d yaml-cpp < yaml-cpp.patch
-
 cd klee
 
 if [[ -d build ]]
